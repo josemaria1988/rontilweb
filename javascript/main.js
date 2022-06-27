@@ -131,6 +131,10 @@ let comprar120 = boton1.addEventListener("click", () => {
 //Agregamos el producto elegido por el usuario al array_carrito
 let comprar240 = boton2.addEventListener("click", () => {
     array_carrito.push(contenedor240);
+    if (array_carrito.includes(contenedor120)) {
+        let nuevo_arreglo = array_carrito.map(borrar_duplicado);
+        console.log(nuevo_arreglo);
+    }
     console.log(contenedor240.get_datos());
     console.log("el total es de ", venta_total_240());
     console.log(array_carrito);
@@ -139,6 +143,10 @@ let comprar240 = boton2.addEventListener("click", () => {
 //Agregamos el producto elegido por el usuario al array_carrito
 let comprar360 = boton3.addEventListener("click", () => {
     array_carrito.push(contenedor360);
+    if (array_carrito.includes(contenedor120)) {
+        let nuevo_arreglo = array_carrito.map(borrar_duplicado);
+        console.log(nuevo_arreglo);
+    }
     console.log(contenedor360.get_datos());
     console.log("el total es de ", venta_total_360());
 });
