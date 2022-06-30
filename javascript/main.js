@@ -22,6 +22,12 @@ function saludar_usuario() {
 //EJECUTAMOS LA FUNCIONA SALUDAR
 saludar_usuario();
 
+//VARIABLES
+
+let array_carrito = [];
+let total_carrito = 0;
+let cantidad_total = 0;
+
 //LOS PRODUCTOS EN PANTALLA
 
 class Producto {
@@ -39,7 +45,7 @@ class Producto {
         console.log("Producto", this.nombre);
         console.log("Precio:", this.precio);
         console.log("Cantidad:", this.cantidad);
-        console.log("Cantidad:", this.stock);
+        console.log("Stock:", this.stock);
     }
 
     get_stock() {
@@ -59,7 +65,6 @@ class Producto {
 }
 
 //CREAMOS PRODUCTOS Y ARRAY CARRITO 
-let array_carrito = [];
 let contenedor120 = new Producto(1, "Contenedor 120 Lts", 3100, 1, 15);
 let contenedor240 = new Producto(2, "Contenedor 240 Lts", 4200, 1, 10);
 let contenedor360 = new Producto(3, "Contenedor 360 Lts", 6300, 1, 6);
@@ -82,28 +87,27 @@ function descuento_especial(precio, cantidad) {
 
 //Calculamos el precio total de productos en el array carrito
 
-//Esto no funciona-------------------------------------------
-function calcular_total_120(acu, precio) {
-    precio = contenedor120.total
-    acu = acu + precio
-    return acu
+function calcular_total_120(acu120, precio) {
+    precio = contenedor120.precio
+    acu120 = acu120 + precio
+    return acu120
 }
-function calcular_total_240(acu, precio) {
-    precio = contenedor240.total
-    acu = acu + precio
-    return acu
+function calcular_total_240(acu240, precio) {
+    precio = contenedor240.precio
+    acu240 = acu240 + precio
+    return acu240
 }
-function calcular_total_360(acu, precio) {
-    precio = contenedor360.total
-    acu = acu + precio
-    return acu
+function calcular_total_360(acu360, precio) {
+    precio = contenedor360.precio
+    acu360 = acu360 + precio
+    return acu360
 }
 
 let venta_total_120 = () => array_carrito.reduce(calcular_total_120, 0);
 let venta_total_240 = () => array_carrito.reduce(calcular_total_240, 0);
 let venta_total_360 = () => array_carrito.reduce(calcular_total_360, 0);
 function venta_total() {
-    let resultado = calcular_total_120() + calcular_total_240() + calcular_total_360();
+    let resultado = venta_total_120 + venta_total_240 + venta_total_360;
     return resultado
 };
 
@@ -137,7 +141,6 @@ let comprar240 = boton2.addEventListener("click", () => {
     }
     console.log(contenedor240.get_datos());
     console.log("el total es de ", venta_total_240());
-    console.log(array_carrito);
 });
 
 //Agregamos el producto elegido por el usuario al array_carrito
