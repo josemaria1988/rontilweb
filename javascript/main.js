@@ -129,6 +129,7 @@ let comprar120 = boton1.addEventListener("click", () => {
         console.log(nuevo_arreglo);
     }
     console.log(contenedor120.get_datos());
+    console.log(contenedor120.venta_stock());
     console.log("el total es de ", venta_total_120());
 });
 
