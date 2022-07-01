@@ -113,21 +113,27 @@ function venta_total() {
 
 //Borrar duplicados en array carrito:
 
+
 function borrar_duplicado(Producto) {
-    let actual = {
+    if (array_carrito.includes(contenedor120)){
+    return {
         nombre: Producto.nombre,
-        cantidad: Producto.cantidad++
+        precio: Producto.precio,
+        cantidad: Producto.cantidad + 1,
+        stock: Producto.stock - 1,
+        total: Producto.precio * Producto.cantidad
     }
-    return actual
+}else {
+    return array_carrito
+}
 };
 
 //Agregamos el producto elegido por el usuario al array_carrito
 let comprar120 = boton1.addEventListener("click", () => {
     array_carrito.push(contenedor120);
-    if (array_carrito.includes(contenedor120)) {
         let nuevo_arreglo = array_carrito.map(borrar_duplicado);
         console.log(nuevo_arreglo);
-    }
+    
     console.log(contenedor120.get_datos());
     console.log(contenedor120.venta_stock());
     console.log("el total es de ", venta_total_120());
