@@ -25,149 +25,150 @@ saludar_usuario();
 //VARIABLES
 
 let array_carrito = [];
-let total_carrito = 0;
-let cantidad_total = 0;
 
-//LOS PRODUCTOS EN PANTALLA
 
-class Producto {
-    constructor(id, nombre, precio, cantidad, stock) {
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.cantidad = cantidad;
-        this.stock = stock;
-        this.total = precio * cantidad;
+//ARRAY DE PRODUCTOS
+
+const producto = [
+    {
+        id: 1,
+        nombre: "Contenedor 120 Lts",
+        img: 'imagenes/contenedor120.jpg',
+        precio: 3100,
+        cantidad: 1,
+        stock: 15,
+        descrip: "Contenedor de residuos de 120 Lts marca SULO",
+    },
+
+    {
+        id: 2,
+        nombre: "Contenedor 240 Lts",
+        img: 'imagenes/contenedor240.jpg',
+        precio: 4200,
+        cantidad: 1,
+        stock: 15,
+        descrip: "Contenedor de residuos de 240 Lts marca SULO",
+    },
+
+    {
+        id: 3,
+        nombre: "Contenedor 360 Lts",
+        img: 'imagenes/contenedor360.jpg',
+        precio: 6300,
+        cantidad: 1,
+        stock: 15,
+        descrip: "Contenedor de residuos de 360 Lts marca SULO"
+    },
+
+    {
+        id: 4,
+        nombre: "Contenedor 770 Lts",
+        img: 'imagenes/contenedor770.jpg',
+        precio: 16800,
+        cantidad: 1,
+        stock: 15,
+        descrip: "Contenedor de residuos de 770 Lts marca SULO"
+    },
+
+    {
+        id: 5,
+        nombre: "Contenedor 1100 Lts",
+        img: 'imagenes/contenedor1100.jpg',
+        precio: 20100,
+        cantidad: 1,
+        stock: 15,
+        descrip: "Contenedor de residuos de 1100 Lts marca SULO"
     }
+];
 
-    get_datos() {
-        console.log("ID", this.id);
-        console.log("Producto", this.nombre);
-        console.log("Precio:", this.precio);
-        console.log("Cantidad:", this.cantidad);
-        console.log("Stock:", this.stock);
-    }
+//MOSTRAMOS LOS PRODUCTOS EN PANTALLA:
 
-    get_stock() {
-        if (this.stock <= 10) {
-            console.log("QUEDA POCO STOCK")
+const card_productos = document.getElementById('card_productos');
+
+producto.forEach(producto => {
+    let div = document.createElement('div');
+    div.className = 'col'
+    div.innerHTML += `<div class="card " style="width: 18rem;">
+    <img class="img-fluid" src=${producto.img}>
+    <div class="card-body">
+        <h5 class="card-title">${producto.nombre}</h5>
+        <ul>
+            <li>${producto.descrip}</li>
+            <li>$ ${producto.precio}</li>
+        </ul>
+        <button id="boton${producto.id}" class="btn btn-primary">Comprar</button>
+    </div>
+</div>`
+
+
+card_productos.appendChild(div);
+
+let btn_agregar = document.getElementById(`boton${producto.id}`);
+
+btn_agregar.addEventListener('click', () => {
+    array_carrito.push(producto.id);
+    console.log(array_carrito);
+    descuento_especial();
+    calcular_total();
+    venta_total();
+    console.log(venta_total)
+    mostrar_carrito();
+});
+
+});
+    //<------------------FUNCIONES-------------------->
+
+    //Aplicamos descuentos por cantidad
+    function descuento_especial(precio, cantidad) {
+        let total = precio * cantidad;
+        if (cantidad >= 10) {
+            return total * 0.85
+        } else if (cantidad >= 5) {
+            return total * 0.90
+        } else if (cantidad >= 1) {
+            return total
         }
-        return this.stock
+    };
+
+    //Calculamos el precio total de productos en el array carrito
+
+    function calcular_total(acu, precio) {
+        precio = producto.precio
+        acu = acu + precio
+        return acu
     }
 
-    venta_stock(cantidad) {
-        if (this.stock > this.cantidad) {
-            this.stock = this.stock - cantidad;
-        } else if (this.stock <= 0) {
-            console.log("Producto no disponible");
+    function venta_total() {
+        let total = 0;
+        array_carrito.forEach(producto => {
+            total = + producto.precio * producto.cantidad
         }
-    }
-}
-
-//CREAMOS PRODUCTOS Y ARRAY CARRITO 
-let contenedor120 = new Producto(1, "Contenedor 120 Lts", 3100, 1, 15);
-let contenedor240 = new Producto(2, "Contenedor 240 Lts", 4200, 1, 10);
-let contenedor360 = new Producto(3, "Contenedor 360 Lts", 6300, 1, 6);
-
-
-
-//<------------------FUNCIONES-------------------->
-
-//Aplicamos descuentos por cantidad
-function descuento_especial(precio, cantidad) {
-    let total = precio * cantidad;
-    if (cantidad >= 10) {
-        return total * 0.85
-    } else if (cantidad >= 5) {
-        return total * 0.90
-    } else if (cantidad >= 1) {
+        )
         return total
-    }
-};
 
-//Calculamos el precio total de productos en el array carrito
-
-function calcular_total_120(acu120, precio) {
-    precio = contenedor120.precio
-    acu120 = acu120 + precio
-    return acu120
-}
-function calcular_total_240(acu240, precio) {
-    precio = contenedor240.precio
-    acu240 = acu240 + precio
-    return acu240
-}
-function calcular_total_360(acu360, precio) {
-    precio = contenedor360.precio
-    acu360 = acu360 + precio
-    return acu360
-}
-
-let venta_total_120 = () => array_carrito.reduce(calcular_total_120, 0);
-let venta_total_240 = () => array_carrito.reduce(calcular_total_240, 0);
-let venta_total_360 = () => array_carrito.reduce(calcular_total_360, 0);
-function venta_total() {
-    let resultado = venta_total_120 + venta_total_240 + venta_total_360;
-    return resultado
-};
-
-//Borrar duplicados en array carrito:
+    };
 
 
-function borrar_duplicado(Producto) {
-    if (array_carrito.includes(contenedor120)){
-    return {
-        nombre: Producto.nombre,
-        precio: Producto.precio,
-        cantidad: Producto.cantidad + 1,
-        stock: Producto.stock - 1,
-        total: Producto.precio * Producto.cantidad
-    }
-}else {
-    return array_carrito
-}
-};
 
-//Agregamos el producto elegido por el usuario al array_carrito
-let comprar120 = boton1.addEventListener("click", () => {
-    array_carrito.push(contenedor120);
-        let nuevo_arreglo = array_carrito.map(borrar_duplicado);
-        console.log(nuevo_arreglo);
-    
-    console.log(contenedor120.get_datos());
-    console.log(contenedor120.venta_stock());
-    console.log("el total es de ", venta_total_120());
-});
+// MOSTRAMOS CARRITO DE COMPRAS CON LO ELEGIDO POR EL USUARIO:
 
-//Agregamos el producto elegido por el usuario al array_carrito
-let comprar240 = boton2.addEventListener("click", () => {
-    array_carrito.push(contenedor240);
-    if (array_carrito.includes(contenedor120)) {
-        let nuevo_arreglo = array_carrito.map(borrar_duplicado);
-        console.log(nuevo_arreglo);
-    }
-    console.log(contenedor240.get_datos());
-    console.log("el total es de ", venta_total_240());
-});
+const mostrar_carrito = (productoId) => {
+    let articulo = array_carrito.find(producto => producto.id == productoId);
+    array_carrito.push(articulo);
+    let contenedor_carrito = document.getElementById("carrito");
+    let article = document.createElement('article');
+    article.classList.add('container')
+    article.innerHTML += `
+                    <ul class="list-group mb-3">
+                      <li class="list-group-item d-flex justify-content-between lh-sm">
+                                  <div class="row rounded">
+                                  <img src=${producto.img} class="rounded float-start w-50">
+                                    <p class="my-0">${producto.nombre}</p>
+                                    <small class="text-muted">${producto.descrip}</small>
+                                  </div>
+                                <span class="text-bold">${producto.precio}</span>
+                      <button id="eliminar${producto.id}" class="btn-danger">Quitar</button>
+                      </li>`;
 
-//Agregamos el producto elegido por el usuario al array_carrito
-let comprar360 = boton3.addEventListener("click", () => {
-    array_carrito.push(contenedor360);
-    if (array_carrito.includes(contenedor120)) {
-        let nuevo_arreglo = array_carrito.map(borrar_duplicado);
-        console.log(nuevo_arreglo);
-    }
-    console.log(contenedor360.get_datos());
-    console.log("el total es de ", venta_total_360());
-});
-
-let finalizar_compra = finalizar.addEventListener("click", () => {
-
-    console.log("Productos actualmente en carrito", array_carrito);
-    console.log("El total a pagar es de", venta_total()); //ESTO NO FUNCIONA
-});
-
-let cancelar_compra = cancelar.addEventListener("click", () => {
-    array_carrito = [];
-    console.log("Hemos cancelado tu compra.")
-});
+    contenedor_carrito.appendChild(article);
+  };
