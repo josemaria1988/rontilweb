@@ -109,7 +109,6 @@ btn_agregar.addEventListener('click', () => {
     array_carrito.push(producto.id);
     console.log(array_carrito);
     descuento_especial();
-    calcular_total();
     venta_total();
     console.log(venta_total)
     mostrar_carrito();
@@ -131,12 +130,6 @@ btn_agregar.addEventListener('click', () => {
     };
 
     //Calculamos el precio total de productos en el array carrito
-
-    function calcular_total(acu, precio) {
-        precio = producto.precio
-        acu = acu + precio
-        return acu
-    }
 
     function venta_total() {
         let total = 0;
