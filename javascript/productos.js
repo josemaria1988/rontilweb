@@ -1,36 +1,53 @@
-const productos = [
+//ARRAY DE PRODUCTOS
 
+const stock_producto = [
     {
         id: 1,
         nombre: "Contenedor 120 Lts",
-        tipo: "Contenedor de residuos",
-        precio: 3100,
         img: 'imagenes/contenedor120.jpg',
-        descrip: "Contenedor de residuos de 120 litros",
+        precio: 3100,
         cantidad: 1,
+        stock: 15,
+        descrip: "Contenedor de residuos de 120 Lts marca SULO",
     },
 
     {
         id: 2,
         nombre: "Contenedor 240 Lts",
-        tipo: "Contenedor de residuos",
-        precio: 4200,
         img: 'imagenes/contenedor240.jpg',
-        descrip: "Contenedor de residuos de 240 litros",
+        precio: 4200,
         cantidad: 1,
+        stock: 15,
+        descrip: "Contenedor de residuos de 240 Lts marca SULO",
     },
 
     {
         id: 3,
         nombre: "Contenedor 360 Lts",
-        tipo: "Contenedor de residuos",
-        precio: 6300,
         img: 'imagenes/contenedor360.jpg',
-        descrip: "Contenedor de residuos de 360 litros",
+        precio: 6300,
         cantidad: 1,
+        stock: 15,
+        descrip: "Contenedor de residuos de 360 Lts marca SULO"
     },
 
+    {
+        id: 4,
+        nombre: "Contenedor 770 Lts",
+        img: 'imagenes/contenedor770.jpg',
+        precio: 16800,
+        cantidad: 1,
+        stock: 15,
+        descrip: "Contenedor de residuos de 770 Lts marca SULO"
+    },
 
-]
-
-export { productos };
+    {
+        id: 5,
+        nombre: "Contenedor 1100 Lts",
+        img: 'imagenes/contenedor1100.jpg',
+        precio: 20100,
+        cantidad: 1,
+        stock: 15,
+        descrip: "Contenedor de residuos de 1100 Lts marca SULO"
+    }
+];

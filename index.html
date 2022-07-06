@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilos.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Rontil S.A. Index</title>
 </head>
 
@@ -17,6 +17,8 @@
             <a href="#">
                 <img class="logo" src="imagenes/logo.png" alt="logo">
             </a>
+
+            <!--Menu Navegacion-->
             <ul class="enlaces-menu">
                 <li><a href="#">Inicio</a></li>
                 <li><a href="#">Nosotros</a></li>
@@ -29,6 +31,75 @@
                 <span class="br-3"></span>
             </button>
         </nav>
+
+        <!--Dropdown para ingreso de Usuario-->
+        <div class="d-flex">
+            <button type="button" class="btn letras--submenu btn__offcanvas dropdown-toggle" id="dropdownMenuOffset"
+                data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">
+                Usuario
+            </button>
+            <form class="dropdown-menu p-3">
+                <div class="mb-2">
+                    <label for="exampleDropdownFormEmail2" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" id="exampleDropdownFormEmail2" id="user"
+                        placeholder="email@example.com">
+                </div>
+                <div class="mb-2">
+                    <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="exampleDropdownFormPassword2" id="pass"
+                        placeholder="Password">
+                </div>
+                <div class="mb-2">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                        <label class="form-check-label" for="dropdownCheck2">
+                            Recordarme
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-danger" onclick=handler()>Ingresar</button>
+                <hr class="my-4">
+                <label class="form-check-label">Eres nuevo?</label>
+                <a class="btn btn-primary" href="paginas/registro.html" role="button">Registrarse</a>
+            </form>
+
+            <!--Carrito en Offcanvas-->
+            <button class="btn letras--submenu btn__offcanvas" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvas" aria-controls="offcanvas" id="boton-carrito">Carrito</button>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+                <div class="offcanvas-header">
+                    <h5 id="offcanvasLabel">Pendiente de Confirmación</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-primary">Carrito</span>
+                            <span class="badge bg-primary rounded-pill" id="contador-total"></span>
+                        </h4>
+                        <ul class="list-group mb-2" id="carrito-compras">
+                            
+                                
+                                    
+                                    <!--CONTENIDO GENERADO EN JAVASCRIPT-->
+                                   
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span class="text-primary">Total ($)</span>                                     </span>
+                                        <strong id="precio-total"></strong>
+                                    </li>
+                                </ul>
+
+                    <form class="card p-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Código descuento">
+                            <button type="submit" class="btn btn-secondary">Solicitar</button>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Confirmar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </header>
 
     <!--CARROUSEL DE IMAGENESS-->
@@ -56,15 +127,21 @@
         <h3 class="container shadow-lg p-3 mb-5 bg-body rounded">ELIGE EL CONTENEDOR DE BASURA QUE CREAS MÁS CONVENIENTE
             PARA TIRAR MI PROYECTO E ILUSIONES</h3>
 
-        <div class="container mb-5" >
-            <div class="row" id="card_productos">
-            <!--CONTENIDO GENERADO EN JAVASCRIPT-->
-        </div>
+        <div class="container mb-5">
+            <div class="row" id="contenedor-productos">
+                <!--CONTENIDO GENERADO EN JAVASCRIPT-->
+            </div>
         </div>
 
         <div class="container">
-            <div id="carrito">
-                
+            <div>
+                <table class="table table-stripped">
+                    <thead>
+                        <tr id="carrito-compras">
+
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </main>
@@ -87,6 +164,10 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="javascript/productos.js"></script>
     <script src="javascript/main.js"></script>
 </body>
 

@@ -1,3 +1,10 @@
+//VARIABLES GLOBALES:
+const contenedor_productos = document.getElementById('contenedor-productos');
+const carrito_compras = document.getElementById('carrito-compras');
+const precio_total = document.getElementById('precio-total');
+const contador_total = document.getElementById('contador-total');
+let array_carrito = [];
+
 // MENU RESPONSIVE CON JAVASCRIPT Y CSS
 const botonMenu = document.querySelector('.botonMenu');
 const enlaces = document.querySelector('.enlaces-menu');
@@ -8,28 +15,9 @@ botonMenu.addEventListener('click', () => {
     barras.forEach(child => { child.classList.toggle('animado') });
 });
 
-//PEDIMOS AL USUARIO SU NOMBRE POR PROMPT
-let usuario1 = prompt("Por favor ingresa tu nombre");
-
-//SELECCIONAMOS EL ID PARA MOSTRAR MENSAJE DE BIENVENIDA CON EL NOMBRE DEL USUARIO
-function saludar_usuario() {
-    let bienvenido = document.getElementById("bienvenido");
-    let h1 = document.createElement("h1");
-    h1.innerHTML = "BIENVENIDO " + usuario1 + " A MI SIMULADOR INTERACTIVO";
-    bienvenido.appendChild(h1);
-}
-
-//EJECUTAMOS LA FUNCIONA SALUDAR
-saludar_usuario();
-
-//VARIABLES
-
-let array_carrito = [];
-
-
 //ARRAY DE PRODUCTOS
 
-const producto = [
+const stock_productos = [
     {
         id: 1,
         nombre: "Contenedor 120 Lts",
@@ -81,87 +69,76 @@ const producto = [
     }
 ];
 
-//MOSTRAMOS LOS PRODUCTOS EN PANTALLA:
+//Llamamos a la funcion que imprime los productos en pantalla
+mostrar_productos(stock_productos);
 
-const card_productos = document.getElementById('card_productos');
+//<------------------FUNCIONES-------------------->
 
-producto.forEach(producto => {
-    let div = document.createElement('div');
-    div.className = 'col'
-    div.innerHTML += `<div class="card " style="width: 18rem;">
-    <img class="img-fluid" src=${producto.img}>
-    <div class="card-body">
-        <h5 class="card-title">${producto.nombre}</h5>
-        <ul>
-            <li>${producto.descrip}</li>
-            <li>$ ${producto.precio}</li>
-        </ul>
-        <button id="boton${producto.id}" class="btn btn-primary">Comprar</button>
-    </div>
-</div>`
+//Funcion para imprimir los productos en el html:
+function mostrar_productos(array) {
 
+    array.forEach(producto => {
 
-card_productos.appendChild(div);
+        let div = document.createElement('div');
+        div.className = 'col'
+        div.innerHTML = `<div class="card " style="width: 18rem;">
+        <img class="img-fluid" src=${producto.img}>
+        <div class="card-body">
+            <h5 class="card-title">${producto.nombre}</h5>
+            <ul>
+                <li>${producto.descrip}</li>
+                <li>$ ${producto.precio}</li>
+            </ul>
+            <button id="boton${producto.id}" class="btn btn-primary">Comprar</button>
+        </div>
+    </div>`
 
-let btn_agregar = document.getElementById(`boton${producto.id}`);
+        contenedor_productos.appendChild(div);
+        //Agregamos el boton comprar y el evento dentro del forEach para que al recorrer el array tambien se identifique al boton por el id de producto
+        let btn_agregar = document.getElementById(`boton${producto.id}`)
 
-btn_agregar.addEventListener('click', () => {
-    array_carrito.push(producto.id);
-    console.log(array_carrito);
-    descuento_especial();
-    venta_total();
-    console.log(venta_total)
-    mostrar_carrito();
-});
+        btn_agregar.addEventListener('click', () => {
+            agregar_carrito(producto.id);
+        })
 
-});
-    //<------------------FUNCIONES-------------------->
-
-    //Aplicamos descuentos por cantidad
-    function descuento_especial(precio, cantidad) {
-        let total = precio * cantidad;
-        if (cantidad >= 10) {
-            return total * 0.85
-        } else if (cantidad >= 5) {
-            return total * 0.90
-        } else if (cantidad >= 1) {
-            return total
-        }
-    };
-
-    //Calculamos el precio total de productos en el array carrito
-
-    function venta_total() {
-        let total = 0;
-        array_carrito.forEach(producto => {
-            total = + producto.precio * producto.cantidad
-        }
-        )
-        return total
-
-    };
+    });
+};
 
 
 
-// MOSTRAMOS CARRITO DE COMPRAS CON LO ELEGIDO POR EL USUARIO:
 
-const mostrar_carrito = (productoId) => {
-    let articulo = array_carrito.find(producto => producto.id == productoId);
-    array_carrito.push(articulo);
-    let contenedor_carrito = document.getElementById("carrito");
-    let article = document.createElement('article');
-    article.classList.add('container')
-    article.innerHTML += `
-                    <ul class="list-group mb-3">
-                      <li class="list-group-item d-flex justify-content-between lh-sm">
-                                  <div class="row rounded">
-                                  <img src=${producto.img} class="rounded float-start w-50">
-                                    <p class="my-0">${producto.nombre}</p>
-                                    <small class="text-muted">${producto.descrip}</small>
-                                  </div>
-                                <span class="text-bold">${producto.precio}</span>
-                      <button id="eliminar${producto.id}" class="btn-danger">Quitar</button>
-                      </li>`;
 
-    contenedor_carrito.appendChild(article);
-  };
+
+function agregar_carrito(id) {
+
+    let agregar_producto = stock_productos.find(item => item.id == id)
+    array_carrito.push(agregar_producto);
+    actualizar_carrito();
+
+    let li = document.createElement('li')
+    li.className = 'carrito-compras'
+    li.innerHTML = `
+                <li class="list-group-item d-flex justify-content-between">
+                 <h6 class="my-0">${agregar_producto.nombre}</h6>
+                  <small class="text-muted">${agregar_producto.descrip}</small>
+                  <li class="list-group-item d-flex justify-content-between">
+                  <span class="text-muted">Cantidad: ${agregar_producto.cantidad}</span>
+                   <span class="text-muted">$${agregar_producto.precio}</span>
+                   
+                   </li>
+                   <button class="btn btn-danger ml-5">Eliminar</button>
+                   </li>
+                `
+    carrito_compras.appendChild(li);
+}
+
+function actualizar_carrito() {
+
+    contador_total.innerText = array_carrito.length
+    
+    let total = array_carrito.reduce((acumulador, producto) => {
+        acumulador + (producto.precio * producto.cantidad)
+        return acumulador
+    });
+    precio_total.innerText = total;
+}
