@@ -104,11 +104,7 @@ function mostrar_productos(array) {
     });
 };
 
-
-
-
-
-
+//Agregamos los productos al array carrito y lo imprimimos en el html
 function agregar_carrito(id) {
 
     let agregar_producto = stock_productos.find(item => item.id == id)
@@ -126,12 +122,20 @@ function agregar_carrito(id) {
                    <span class="text-muted">$${agregar_producto.precio}</span>
                    
                    </li>
-                   <button class="btn btn-danger ml-5">Eliminar</button>
+                   <button id="btn_eliminar${agregar_producto.id}" class="btn btn-danger ml-5">Eliminar</button>
                    </li>
                 `
     carrito_compras.appendChild(li);
+
+    let btn_eliminar = document.getElementById(`btn_eliminar${agregar_producto.id}`)
+
+    btn_eliminar.addEventListener('click', () => {
+        btn_eliminar.parentElement.remove();
+        array_carrito = array_carrito.filter(elemento => elemento.id != agregar_producto.id )
+    })
 }
 
+//Actualizamos el total de elementos y precio total en el carrito
 function actualizar_carrito() {
 
     contador_total.innerText = array_carrito.length
