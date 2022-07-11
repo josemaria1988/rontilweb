@@ -18,55 +18,27 @@ botonMenu.addEventListener('click', () => {
 //ARRAY DE PRODUCTOS
 
 const stock_productos = [
-    {
-        id: 1,
-        nombre: "Contenedor 120 Lts",
-        img: 'imagenes/contenedor120.jpg',
-        precio: 3100,
-        cantidad: 1,
-        stock: 15,
-        descrip: "Contenedor de residuos de 120 Lts marca SULO",
-    },
+    { id: 1, nombre: "Contenedor 120 Lts", img: 'imagenes/contenedor120.jpg', precio: 3100, cantidad: 1, stock: 15, tipo: "contenedores", descrip: "Contenedor de residuos de 120 Lts marca SULO" },
 
-    {
-        id: 2,
-        nombre: "Contenedor 240 Lts",
-        img: 'imagenes/contenedor240.jpg',
-        precio: 4200,
-        cantidad: 1,
-        stock: 15,
-        descrip: "Contenedor de residuos de 240 Lts marca SULO",
-    },
+    { id: 2, nombre: "Contenedor 240 Lts", img: 'imagenes/contenedor240.jpg', precio: 4200, cantidad: 1, stock: 15, tipo: "contenedores", descrip: "Contenedor de residuos de 240 Lts marca SULO" },
 
-    {
-        id: 3,
-        nombre: "Contenedor 360 Lts",
-        img: 'imagenes/contenedor360.jpg',
-        precio: 6300,
-        cantidad: 1,
-        stock: 15,
-        descrip: "Contenedor de residuos de 360 Lts marca SULO"
-    },
+    { id: 3, nombre: "Contenedor 360 Lts", img: 'imagenes/contenedor360.jpg', precio: 6300, cantidad: 1, stock: 15, tipo: "contenedores", descrip: "Contenedor de residuos de 360 Lts marca SULO" },
 
-    {
-        id: 4,
-        nombre: "Contenedor 770 Lts",
-        img: 'imagenes/contenedor770.jpg',
-        precio: 16800,
-        cantidad: 1,
-        stock: 15,
-        descrip: "Contenedor de residuos de 770 Lts marca SULO"
-    },
+    { id: 4, nombre: "Contenedor 770 Lts", img: 'imagenes/contenedor770.jpg', precio: 16800, cantidad: 1, stock: 15, tipo: "contenedores", descrip: "Contenedor de residuos de 770 Lts marca SULO" },
 
-    {
-        id: 5,
-        nombre: "Contenedor 1100 Lts",
-        img: 'imagenes/contenedor1100.jpg',
-        precio: 20100,
-        cantidad: 1,
-        stock: 15,
-        descrip: "Contenedor de residuos de 1100 Lts marca SULO"
-    }
+    { id: 5, nombre: "Contenedor 1100 Lts", img: 'imagenes/contenedor1100.jpg', precio: 20100, cantidad: 1, stock: 15, tipo: "contenedores", descrip: "Contenedor de residuos de 1100 Lts marca SULO" },
+
+    { id: 6, nombre: "Papelera Prima Línea 50 Lts", img: 'imagenes/primalinea1.jpg', precio: 7390, cantidad: 1, stock: 15, tipo: "papeleras", descrip: "Papelera para la via urbana de 50 Lts de capacidad" },
+
+    { id: 7, nombre: "Papelera Clásica 50 Lts", img: 'imagenes/papeleraclasica.jpg', precio: 2500, cantidad: 1, stock: 15, tipo: "papeleras", descrip: "Papelera clásica boca de sapo de 50 lts de capacidad" },
+
+    { id: 8, nombre: "Compostador Bulbeo 360 Lts", img: 'imagenes/compostador360.jpg', precio: 6500, cantidad: 1, stock: 15, tipo: "compostadores", descrip: "Compostador Bulbeo de 360 Lts" },
+
+    { id: 9, nombre: "Compostador Bulb eo 700 Lts", img: 'imagenes/compostador700.jpg', precio: 8700, cantidad: 1, stock: 15, tipo: "compostadores", descrip: "Compostador Bulbeo de 700 Lts" },
+
+    { id: 10, nombre: "Tapa Contenedor 120 Lts", img: 'imagenes/tapa120.jpg', precio: 650, cantidad: 1, stock: 15, tipo: "repuestos", descrip: "Tapa para contenedor de 120 Lts" },
+
+    { id: 11, nombre: "Rueda de contenedores", img: 'imagenes/ruedacontenedor.jpg', precio: 400, cantidad: 1, stock: 15, tipo: "repuestos", descrip: "Rueda para contenedores de 120 a 360 Lts" }
 ];
 
 //Llamamos a la funcion que imprime los productos en pantalla
@@ -98,22 +70,37 @@ function mostrar_productos(array) {
         let btn_agregar = document.getElementById(`boton${producto.id}`)
 
         btn_agregar.addEventListener('click', () => {
-            agregar_carrito(producto.id);
+            agregar_carrito(producto.id);//-> Llamamos a la función agregar_carrito y le pasamos el parámetro producto.id
         })
 
     });
 };
 
-//Agregamos los productos al array carrito y lo imprimimos en el html
+//Definimos función agregar_carrito encargada de agregar productos al array carrito sin que se repitan
 function agregar_carrito(id) {
 
     let agregar_producto = stock_productos.find(item => item.id == id)
-    array_carrito.push(agregar_producto);
-    actualizar_carrito();
+    let existe = array_carrito.some(prod => prod.id === id)
+    if (existe == true) {
+        agregar_producto.cantidad++
+    } else {
+        array_carrito.push(agregar_producto);
+    }
+    actualizar_carrito(agregar_producto);
+};
 
-    let li = document.createElement('li')
-    li.className = 'carrito-compras'
-    li.innerHTML = `
+//Actualizamos el carrito con los totales e imprimimos los productos en el carrito.
+function actualizar_carrito(agregar_producto) {
+
+    contador_total.innerText = array_carrito.length;
+    precio_total.innerText = array_carrito.reduce((acc, info) => acc + info.cantidad * info.precio, 0);
+
+
+    carrito_compras.innerHTML = ""
+    array_carrito.forEach(agregar_producto => {
+        let li = document.createElement('li')
+        li.className = 'carrito-compras'
+        li.innerHTML = `
                 <li class="list-group-item d-flex justify-content-between">
                  <h6 class="my-0">${agregar_producto.nombre}</h6>
                   <small class="text-muted">${agregar_producto.descrip}</small>
@@ -125,24 +112,14 @@ function agregar_carrito(id) {
                    <button id="btn_eliminar${agregar_producto.id}" class="btn btn-danger ml-5">Eliminar</button>
                    </li>
                 `
-    carrito_compras.appendChild(li);
+        carrito_compras.appendChild(li);
+    })
 
     let btn_eliminar = document.getElementById(`btn_eliminar${agregar_producto.id}`)
 
     btn_eliminar.addEventListener('click', () => {
         btn_eliminar.parentElement.remove();
-        array_carrito = array_carrito.filter(elemento => elemento.id != agregar_producto.id )
+        array_carrito = array_carrito.filter(elemento => elemento.id != agregar_producto.id)
     })
-}
 
-//Actualizamos el total de elementos y precio total en el carrito
-function actualizar_carrito() {
-
-    contador_total.innerText = array_carrito.length
-    
-    let total = array_carrito.reduce((acumulador, producto) => {
-        acumulador + (producto.precio * producto.cantidad)
-        return acumulador
-    });
-    precio_total.innerText = total;
 }
