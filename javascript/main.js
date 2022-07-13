@@ -4,6 +4,7 @@ const carrito_compras = document.getElementById('carrito-compras');
 const precio_total = document.getElementById('precio-total');
 const contador_total = document.getElementById('contador-total');
 let array_carrito = [];
+let carrito_json = [];
 
 // MENU RESPONSIVE CON JAVASCRIPT Y CSS
 const botonMenu = document.querySelector('.botonMenu');
@@ -46,6 +47,14 @@ mostrar_productos(stock_productos);
 
 //<------------------FUNCIONES-------------------->
 
+//Comprobamos si hay elementos en localStorage:
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('carrito')) {
+        array_carrito = JSON.parse(localStorage.getItem('carrito'))
+        actualizar_carrito()
+    }
+})
+
 //Funcion para imprimir los productos en el html:
 function mostrar_productos(array) {
 
@@ -81,12 +90,12 @@ function agregar_carrito(id) {
 
     let agregar_producto = stock_productos.find(item => item.id == id)
     let existe = array_carrito.some(prod => prod.id === id)
-    if (existe == true) {
-        agregar_producto.cantidad++
-    } else {
-        array_carrito.push(agregar_producto);
-    }
+
+    existe == true ? agregar_producto.cantidad++ : array_carrito.push(agregar_producto);
+
     actualizar_carrito(agregar_producto);
+    localStorage.setItem('carrito', JSON.stringify(array_carrito));
+
 };
 
 //Actualizamos el carrito con los totales e imprimimos los productos en el carrito.
@@ -109,17 +118,20 @@ function actualizar_carrito(agregar_producto) {
                    <span class="text-muted">$${agregar_producto.precio}</span>
                    
                    </li>
-                   <button id="btn_eliminar${agregar_producto.id}" class="btn btn-danger ml-5">Eliminar</button>
+                   <button id="btn_eliminar${agregar_producto.id}" class="btn btn-danger ml-0">Eliminar</button>
                    </li>
                 `
         carrito_compras.appendChild(li);
-    })
 
-    let btn_eliminar = document.getElementById(`btn_eliminar${agregar_producto.id}`)
+        let btn_eliminar = document.getElementById(`btn_eliminar${agregar_producto.id}`)
 
-    btn_eliminar.addEventListener('click', () => {
-        btn_eliminar.parentElement.remove();
-        array_carrito = array_carrito.filter(elemento => elemento.id != agregar_producto.id)
+        btn_eliminar.addEventListener('click', () => {
+            btn_eliminar.parentElement.remove();
+            array_carrito = array_carrito.filter(elemento => elemento.id != agregar_producto.id)
+            localStorage.setItem('carrito', JSON.stringify(array_carrito));
+        })
+
     })
 
 }
+
