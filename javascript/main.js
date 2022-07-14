@@ -80,6 +80,13 @@ function mostrar_productos(array) {
 
         btn_agregar.addEventListener('click', () => {
             agregar_carrito(producto.id);//-> Llamamos a la función agregar_carrito y le pasamos el parámetro producto.id
+
+            // TOASTIFY
+            Toastify({
+                text: "Producto agregado al carrito",
+                duration: 3000,
+                backgroundColor: "green",
+            }).showToast();
         })
 
     });
@@ -135,3 +142,14 @@ function actualizar_carrito(agregar_producto) {
 
 }
 
+$(".btn-danger").click(function(){
+    $(".btn-danger").hide()
+})
+
+let DateTime = luxon.DateTime;
+
+let hoy = DateTime.now()
+console.log(hoy);
+console.log(hoy.year);
+console.log(hoy.month);
+console.log(hoy.day);
