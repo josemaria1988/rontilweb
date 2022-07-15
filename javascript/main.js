@@ -16,6 +16,15 @@ botonMenu.addEventListener('click', () => {
     barras.forEach(child => { child.classList.toggle('animado') });
 });
 
+//HEADER BACKGROUND AL HACER SCROLL DOWN
+jQuery(window).on('scroll', function() {
+    if(jQuery(window).scrollTop() > 300) {
+        jQuery('#header_frame').css('background-color', '#FFFFFF');
+    } else {
+       jQuery('#header_frame').css('background-color', '#ddab46');
+    }
+});
+
 //ARRAY DE PRODUCTOS
 
 const stock_productos = [
@@ -62,7 +71,7 @@ function mostrar_productos(array) {
 
         let div = document.createElement('div');
         div.className = 'col'
-        div.innerHTML = `<div class="card " style="width: 18rem;">
+        div.innerHTML = `<div class="card h-200">
         <img class="img-fluid" src=${producto.img}>
         <div class="card-body">
             <h5 class="card-title">${producto.nombre}</h5>
@@ -85,10 +94,12 @@ function mostrar_productos(array) {
             Toastify({
                 text: "Producto agregado al carrito",
                 duration: 3000,
-                backgroundColor: "green",
+                avatar: 'https://cdn-icons-png.flaticon.com/512/70/70021.png',
+                style: {
+                    background: "green"
+                }
             }).showToast();
         })
-
     });
 };
 
