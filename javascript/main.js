@@ -109,7 +109,7 @@ function agregar_carrito(id) {
     let agregar_producto = stock_productos.find(item => item.id == id)
     let existe = array_carrito.some(prod => prod.id === id)
 
-    existe == true ? agregar_producto.cantidad++ : array_carrito.push(agregar_producto);
+    existe == true ? agregar_producto.cantidad++ : array_carrito.push(agregar_producto); //reducimos un if a la nomenclatura de operador ternario
 
     actualizar_carrito(agregar_producto);
     localStorage.setItem('carrito', JSON.stringify(array_carrito));
