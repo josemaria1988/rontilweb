@@ -147,6 +147,7 @@ function actualizar_carrito(agregar_producto) {
             btn_eliminar.parentElement.remove();
             array_carrito = array_carrito.filter(elemento => elemento.id != agregar_producto.id)
             localStorage.setItem('carrito', JSON.stringify(array_carrito));
+            precio_total.innerText = array_carrito.reduce((acc, info) => acc + info.cantidad * info.precio, 0);
         })
 
     })
