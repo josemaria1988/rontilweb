@@ -93,7 +93,7 @@ function mostrar_productos(array) {
             // TOASTIFY
             Toastify({
                 text: "Producto agregado al carrito",
-                duration: 3000,
+                duration: 1500,
                 avatar: 'https://cdn-icons-png.flaticon.com/512/70/70021.png',
                 style: {
                     background: "green"
@@ -148,15 +148,16 @@ function actualizar_carrito(agregar_producto) {
             array_carrito = array_carrito.filter(elemento => elemento.id != agregar_producto.id)
             localStorage.setItem('carrito', JSON.stringify(array_carrito));
             precio_total.innerText = array_carrito.reduce((acc, info) => acc + info.cantidad * info.precio, 0);
+            actualizar_carrito();
+            Swal.fire({
+                icon: 'error',
+                title: 'Listo!',
+                text: 'Producto eliminado!',
+              })
         })
-
     })
 
 }
-
-$(".btn-danger").click(function(){
-    $(".btn-danger").hide()
-})
 
 let DateTime = luxon.DateTime;
 
