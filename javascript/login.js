@@ -47,7 +47,8 @@ function registrarse() {
             icon: 'success',
             title: '<strong><u>Bienvenido!</u></strong>',
             html: 'Ve a usar tu código y obtén <b>UN GRAN DESCUENTO</b>, ' +
-                  '<a href="index.html">Volver a Inicio</a>'
+                  '<a href="index.html">Volver a Inicio</a>' +
+                  'CODIGO 494595'
             
           })
     }
