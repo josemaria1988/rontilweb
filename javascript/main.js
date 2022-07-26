@@ -21,16 +21,9 @@ const enlaces = document.querySelector('.enlaces-menu');
 const barras = document.querySelectorAll('.botonMenu span');
 
 //Llamamos a los productos en el json con un fetch
-fetch('/productos.json').then(function(response) {
-    if(response.ok) {
-        mostrar_productos(stock_productos);
-    } else {
-      console.log('Respuesta de red OK pero respuesta HTTP no OK');
-    }
-  })
-  .catch(function(error) {
-    console.log('Hubo un problema con la petición Fetch:' + error.message);
-  });
+fetch("productos/productos.json")
+    .then(response => response.json())
+    .then( data => mostrar_productos(data));
 
 
 class ProductoCarrito {
