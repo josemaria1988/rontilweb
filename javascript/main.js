@@ -26,6 +26,7 @@ fetch("productos/productos.json")
     .then( data => mostrar_productos(data));
 
 
+//Creamos una clase constructora para los productos traídos del json.
 class ProductoCarrito {
     constructor(nombre, descripcion, precio, imagen, cantidad, id, hora) {
         this.nombre = nombre;
@@ -58,11 +59,6 @@ jQuery(window).on('scroll', function () {
         jQuery('#header_frame').css('background-color', '#ddab46');
     }
 });
-
-
-//Llamamos a la funcion que imprime los productos en pantalla
-//mostrar_productos(stock_productos);
-
 
 //<------------------FUNCIONES-------------------->
 
@@ -122,9 +118,7 @@ function agregar_carrito(e) {
     let cantidad = 1;
 
     if (index == -1) {
-
         const producto = new ProductoCarrito(nombre, descripcion, precio, imagen, cantidad, id, hora)
-        console.log(producto)
         carrito.push(producto)
     } else {
         carrito[index].cantidad++;
@@ -132,9 +126,6 @@ function agregar_carrito(e) {
     }
     localStorage.setItem('carrito', JSON.stringify(carrito))
 }
-
-
-
 
 //Actualizamos el carrito con los totales e imprimimos los productos en el carrito.
 function actualizar_carrito(arrayCarrito) {
@@ -145,9 +136,10 @@ function actualizar_carrito(arrayCarrito) {
         let li = document.createElement('li')
         li.className = 'carrito-compras'
         li.innerHTML = `
-                <li class="list-group-item d-flex justify-content-between">
+                <li class="list-group-item justify-content-between">
                     <h6 class="my-0">${agregar_producto.nombre}</h6>
-                    <small class="text-muted">${agregar_producto.descrip}</small>
+                    <p class="text-muted">${agregar_producto.descripcion}</p>
+                    <p class="text-muted" style="background: yellow"> Añadido el ${agregar_producto.hora}</p>
                     <li class="list-group-item d-flex justify-content-between">
                     <span class="text-muted">Cantidad: ${agregar_producto.cantidad}</span>
                     <span class="text-muted">$${agregar_producto.precio}</span>
@@ -168,16 +160,13 @@ function actualizar_carrito(arrayCarrito) {
 }
 
 
-
-
-
+//Eliminar Productos del Carrito
 const eliminarProducto = (e) => {
     let id = e.target.id
     let index = carrito.findIndex(producto => producto.id == id)
     carrito.splice(index, 1)
     localStorage.setItem('carrito', JSON.stringify(carrito))
     actualizar_carrito(carrito)
-
 }
 
 
