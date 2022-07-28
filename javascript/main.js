@@ -23,7 +23,7 @@ const barras = document.querySelectorAll('.botonMenu span');
 //Llamamos a los productos en el json con un fetch
 fetch("productos/productos.json")
     .then(response => response.json())
-    .then( data => mostrar_productos(data));
+    .then(data => mostrar_productos(data));
 
 
 //Creamos una clase constructora para los productos traídos del json.
@@ -98,8 +98,6 @@ function mostrar_productos(productos) {
 }
 
 
-
-
 //Definimos función agregar_carrito encargada de agregar productos al array carrito sin que se repitan
 function agregar_carrito(e) {
 
@@ -125,6 +123,13 @@ function agregar_carrito(e) {
         carrito[index].hora = pegaHora();
     }
     localStorage.setItem('carrito', JSON.stringify(carrito))
+
+    Toastify({
+        text: "Producto añadido al carrito",
+        style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+    }).showToast();
 }
 
 //Actualizamos el carrito con los totales e imprimimos los productos en el carrito.
@@ -169,5 +174,29 @@ const eliminarProducto = (e) => {
     actualizar_carrito(carrito)
 }
 
+//Usamos API de Clima
+let clima = document.getElementById('clima');
 
+fetch("https://api.openweathermap.org/data/2.5/weather?q=Montevideo&units=metric&appid=841fc363a6457c859cd8bb7432f75fab")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        let div = document.createElement('div')
+        div.className = 'row justify-content-md-center'
+        div.innerHTML = `
+                        <div class="col">
+                        <h1>EL CLIMA EN MONTEVIDEO</h1>
+                        </div>
+                        <div class="col">
+                             <p> Temperatura Actual: <mark>${data.main.temp}</mark></p>
+                        </div>
+                        <div class="col">
+                             <p>Humedad: <mark>${data.main.humidity}</mark></p>
+                        </div>
+                        <div class="col">
+                            <p> Sensación Térmica: <mark>${data.main.feels_like}</mark</p>
+                        </div>
+                        </div>  `
+        clima.appendChild(div)
+    })
 
