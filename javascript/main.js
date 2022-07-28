@@ -180,7 +180,6 @@ let clima = document.getElementById('clima');
 fetch("https://api.openweathermap.org/data/2.5/weather?q=Montevideo&units=metric&appid=841fc363a6457c859cd8bb7432f75fab")
     .then(response => response.json())
     .then(data => {
-        console.log(data)
         let div = document.createElement('div')
         div.className = 'row justify-content-md-center'
         div.innerHTML = `
