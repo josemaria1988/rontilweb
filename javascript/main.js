@@ -4,26 +4,45 @@ const carrito_compras = document.getElementById('carrito-compras');
 const precio_total = document.getElementById('precio-total');
 const contador_total = document.getElementById('contador-total');
 const activar_carrito = document.getElementById('boton-carrito');
+const buscador = document.getElementById('input-buscador');
+const btn_buscador = document.getElementById('btn-buscador');
 let carrito_json = [];
 let carrito = [];
+let productosBuscados = [];
 let DateTime = luxon.DateTime;
-
-
-const pegaHora = () => {
-    let hoy = DateTime.now()
-    let horaCompra = hoy.toFormat('dd/LL/yyyy HH:mm:ss')
-    return horaCompra
-}
 
 // MENU RESPONSIVE CON JAVASCRIPT Y CSS
 const botonMenu = document.querySelector('.botonMenu');
 const enlaces = document.querySelector('.enlaces-menu');
 const barras = document.querySelectorAll('.botonMenu span');
 
-//Llamamos a los productos en el json con un fetch
-fetch("productos/productos.json")
-    .then(response => response.json())
-    .then(data => mostrar_productos(data));
+//CARGA PAGINA CON PRODUCTOS DEL FETCH------------------
+window.addEventListener('DOMContentLoaded', async () => {
+    const data = await cargarProductos()
+    productosBuscados = data
+    mostrar_productos(productosBuscados)
+    
+})
+//EVENTOS DEL BUSCADOR----------------------------
+buscador.addEventListener('keyup', e => {
+    const nuevoProducto = productosBuscados.filter(producto => producto.nombre.toLowerCase().includes(buscador.value))
+    mostrar_productos(nuevoProducto);
+});
+
+//Llamamos a los productos en el json con un fetch en async
+async function cargarProductos(){
+    const response = await fetch("productos/productos.json")
+    return await response.json()
+}
+
+
+//LIBRERIA LUXON--------------------
+const pegaHora = () => {
+    let hoy = DateTime.now()
+    let horaCompra = hoy.toFormat('dd/LL/yyyy HH:mm:ss')
+    return horaCompra
+}
+
 
 
 //Creamos una clase constructora para los productos traídos del json.
@@ -72,6 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //Funcion para imprimir los productos en el html:
 function mostrar_productos(productos) {
+
+    contenedor_productos.innerHTML = "";
+
+
     productos.forEach(producto => {
         let div = document.createElement('div');
         div.className = 'col'
@@ -165,7 +188,7 @@ function actualizar_carrito(arrayCarrito) {
 }
 
 
-//Eliminar Productos del Carrito
+//Eliminar Productos del Carrito-------------------------
 const eliminarProducto = (e) => {
     let id = e.target.id
     let index = carrito.findIndex(producto => producto.id == id)
@@ -174,12 +197,13 @@ const eliminarProducto = (e) => {
     actualizar_carrito(carrito)
 }
 
-//Usamos API de Clima
+//Usamos API de Clima------------------------------------
 let clima = document.getElementById('clima');
 
 fetch("https://api.openweathermap.org/data/2.5/weather?q=Montevideo&units=metric&appid=841fc363a6457c859cd8bb7432f75fab")
     .then(response => response.json())
     .then(data => {
+
         let div = document.createElement('div')
         div.className = 'row justify-content-md-center'
         div.innerHTML = `
@@ -198,4 +222,5 @@ fetch("https://api.openweathermap.org/data/2.5/weather?q=Montevideo&units=metric
                         </div>  `
         clima.appendChild(div)
     })
+
 
