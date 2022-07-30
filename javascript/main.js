@@ -160,7 +160,7 @@ function actualizar_carrito(arrayCarrito) {
     contador_total.innerText = carrito.length;
     carrito_compras.innerHTML = ""
 
-    for (agregar_producto of arrayCarrito) {
+    for (let agregar_producto of arrayCarrito) {
         let li = document.createElement('li')
         li.className = 'carrito-compras'
         li.innerHTML = `
