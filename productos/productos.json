@@ -1,0 +1,112 @@
+    [{
+        "id": "1",
+        "nombre": "Contenedor 120 Lts",
+        "img": "imagenes/contenedor120.jpg",
+        "precio": "3100",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Contenedor de residuos de 120 Lts marca SULO"
+    },
+
+    {
+        "id": "2",
+        "nombre": "Contenedor 240 Lts",
+        "img": "imagenes/contenedor240.jpg",
+        "precio": "4200",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Contenedor de residuos de 240 Lts marca SULO"
+    },
+
+    {
+        "id": "3",
+        "nombre": "Contenedor 360 Lts",
+        "img": "imagenes/contenedor360.jpg",
+        "precio": "6300",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Contenedor de residuos de 360 Lts marca SULO"
+    },
+
+    {
+        "id": "4",
+        "nombre": "Contenedor 770 Lts",
+        "img": "imagenes/contenedor770.jpg",
+        "precio": "16800",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Contenedor de residuos de 770 Lts marca SULO"
+    },
+
+    {
+        "id": "5",
+        "nombre": "Contenedor 1100 Lts",
+        "img": "imagenes/contenedor1100.jpg",
+        "precio": "20100",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Contenedor de residuos de 1100 Lts marca SULO"
+    },
+    {
+        "id": "6",
+        "nombre": "Compostador de 360 Lts",
+        "img": "imagenes/compostador360.jpg",
+        "precio": "6800",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Compostador Bulbeo de 360 Litros"
+    },
+    {
+        "id": "6",
+        "nombre": "Compostador de 700 Lts",
+        "img": "imagenes/compostador700.jpg",
+        "precio": "8900",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Compostador Bulbeo de 700 Litros"
+    },
+    {
+        "id": "7",
+        "nombre": "Papelera Brinox 40,5 Lts",
+        "img": "imagenes/papelerabrinox.jpg",
+        "precio": "2600",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Papelera Brinox Acero Inox 40,5 Lts"
+    },
+    {
+        "id": "8",
+        "nombre": "Papelera Clásica 50 Lts",
+        "img": "imagenes/papeleraclasica.jpg",
+        "precio": "2000",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Papelera Clásica Boca de Sapo 50 Litros"
+    },
+    {
+        "id": "9",
+        "nombre": "Papelera Prima Línea 50 Lts",
+        "img": "imagenes/primalinea1.jpg",
+        "precio": "5800",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Papelera Prima Línea de 50 Litros"
+    },
+    {
+        "id": "10",
+        "nombre": "Rueda para contenedores",
+        "img": "imagenes/ruedacontenedor.jpg",
+        "precio": "450",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Rueda para contenedores de 120 a 360 Lts"
+    },
+    {
+        "id": "11",
+        "nombre": "Tapa Contenedor 120 Lts",
+        "img": "imagenes/tapa120.jpg",
+        "precio": "650",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Tapa para Contenedor de 120 Litros"
+    }]

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css" />
+    <!--BOOTSTRAP-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!--TOASTIFY-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!--JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!--LUXON FECHAS Y HORAS-->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.0.1/build/global/luxon.min.js"></script>
+    <title>Rontil S.A. Index</title>
+</head>
+
+<body>
+    <header class="sticky-top" id="header_frame">
+        <nav class="navegacion">
+            <a href="index.html">
+                <img class="logo" src="imagenes/logo.png" alt="logo">
+            </a>
+
+            <!--Menu Navegacion-->
+            <ul class="enlaces-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#">Nosotros</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+
+            <button class="botonMenu" type="button">
+                <span class="br-1"></span>
+                <span class="br-2"></span>
+                <span class="br-3"></span>
+            </button>
+
+
+            <div>
+                <!--Dropdown para ingreso de Usuario-->
+                <button type="button" class="btn btn-primary dropdown-toggle btn-lg" id="dropdownMenuOffset"
+                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">
+                    Usuario
+                </button>
+                <form class="dropdown-menu p-3">
+                    <div class="mb-2">
+                        <label for="exampleDropdownFormEmail2" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="exampleDropdownFormEmail2" id="user"
+                            placeholder="email@example.com">
+                    </div>
+                    <div class="mb-2">
+                        <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="exampleDropdownFormPassword2" id="pass"
+                            placeholder="Password">
+                    </div>
+                    <div class="mb-2">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                            <label class="form-check-label" for="dropdownCheck2">
+                                Recordarme
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Ingresar</button>
+                    <hr class="my-4">
+                    <label class="form-check-label">Eres nuevo?</label>
+                    <a class="btn btn-primary" href="registro.html" role="button">Registrarse</a>
+                </form>
+
+
+                <!--Carrito en Offcanvas-->
+
+                <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvas" aria-controls="offcanvas" id="boton-carrito">Carrito <svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                    </svg></button>
+
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasLabel">Pendiente de Confirmación</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-primary">Carrito</span>
+                            <span class="badge bg-primary rounded-pill" id="contador-total"></span>
+                        </h4>
+                        <ul class="list-group mb-2" id="carrito-compras">
+                            <!--CONTENIDO GENERADO EN JAVASCRIPT-->
+                        </ul>
+                        <ul class="list-group mb-2">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span class="text-primary">Total ($)</span> </span>
+                                <strong id="precio-total"></strong>
+                            </li>
+                        </ul>
+
+                        <form class="card p-2">
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="codigo-descuento"
+                                    placeholder="Código descuento">
+                                <button type="submit" class="btn btn-secondary"
+                                    id="solicitar-descuento">Solicitar</button>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Confirmar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!--API DE CLIMA-->
+
+    <div class="container text-center divClima" id="clima">
+
+    </div>
+
+
+
+    <!--CARROUSEL DE IMAGENESS-->
+
+    <div class="contenedor-carrousel">
+
+        <div class="atras botones">
+            &#60
+        </div>
+        <div class="adelante botones">
+            &#62
+        </div>
+
+        <img class="img-fluid" style="width: 75%" src="imagenes/portada2.jpg">
+
+    </div>
+
+
+
+
+    <!--SECCION PRINCIPAL-->
+
+    <div class="container">
+        <h4 class="my-4">QUE PRODUCTO ESTÁS BUSCANDO?</h4>
+        <div class="container d-flex">
+            <input class="form-control m-2 border-5" id="input-buscador" type="text" placeholder="Buscar"
+                aria-label="default input example">
+            <button class="btn btn-info m-2" id="btn-buscador">BUSCAR</button>
+        </div>
+    </div>
+
+    <main class="container-fluid">
+
+        <div id="bienvenido" class="h2 shadow-lg p-3 mb-5 bg-body rounded"></div>
+
+        <h3 class="container shadow-lg p-3 mb-5 bg-body rounded">ELIGE EL CONTENEDOR DE BASURA QUE CREAS MÁS CONVENIENTE
+            PARA TIRAR MI PROYECTO E ILUSIONES</h3>
+
+        <div class="container mb-5">
+            <div class="row" id="contenedor-productos">
+                <!--CONTENIDO GENERADO EN JAVASCRIPT-->
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer container">
+        <div class="d-flex">
+
+            <img src="imagenes/logosulo.png" alt="logosulo">
+
+
+            <img src="imagenes/trominklogo.png" alt="trominklogo">
+
+
+            <img src="imagenes/logojorgensen.png" alt="logojorgensen">
+
+        </div>
+        <div class="container d-flex flex-row-reverse">
+            <img class="logo" src="imagenes/logo.png" alt="logo">
+            <p>RONTIL S.A. 2022</p>
+        </div>
+    </footer>
+
+
+    <!--Listado de productos-->
+    <script src="productos/productos.json"></script>
+    <!--BOOTSTRAP-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <!--script de toastify-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!--script de sweetalert-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="javascript/main.js"></script>
+</body>
+
+</html>
