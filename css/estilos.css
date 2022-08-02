@@ -138,44 +138,6 @@ nav{
     transform: rotate(45deg) translate(-10px, -8px);
 }
 
-/*GRID IMAGENES MAIN INDEX*/
-
-.grid-container {
-    background-color: darkgrey;
-    display: grid;
-    grid-template-columns: repeat(500px, 1fr);
-}
-
-.grid-container > div {
-    background-color: whitesmoke;
-    color: black;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-}
-
-.imagen-grid {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.caja-texto {
-    width: 100%;
-    opacity: 0,9;
-    text-align: center;
-}
-
-.wide {
-    grid-column: span 2;
-}
-
-.tall {
-    grid-row: span 2;
-}
-
 /* CARROUSEL DE IMAGENES */
 
 .contenedor-carrousel{
@@ -189,37 +151,8 @@ nav{
 }
 
 
-.botones {
-    font-size: 30px;
-    width: 70px;
-    height: 70px;
-    line-height: 70px;
-    border-radius: 50%;
-    background-color: rgba(0,0,0,.7);
-    text-align: center;
-    font-weight: bold;
-    position: absolute;
-    color: #fff;
-    box-shadow: 0 0 10px rgba(255,255,255,.6);
-    -webkit-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
-}
 
-.botones:hover{
-    cursor: pointer;
-    transform: scale(1.2,1.2);
-}
-
-.atras {
-    left: 2%;
-    top: calc(50% - 70%);
-}
-
-.adelante {
-    right: 2%;
-    top: calc(50% - 70%);
-}
+/*API DE CLIMA*/
 
 .divClima {
     background-image: url("../imagenes/clima.jpg");
@@ -227,6 +160,7 @@ nav{
     text-shadow: 0.5px 0.5px black;
 }
 
+/*Acomodando imagenes de las CARDS*/
 .card-img-top {
     width: 100%;
     height: 15vw;

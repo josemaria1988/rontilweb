@@ -1,14 +1,15 @@
 class Usuario{
-    constructor(nombre, apellido, email, pass1){
+    constructor(nombre, apellido, email, nickname, pass1){
 
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
+        this.nickname = nickname;
         this.password = pass1;
     }
 };
 
-let usuario = [];
+export let usuario = [];
 
 let formulario = document.getElementById("formulario");
 formulario.addEventListener("submit", (e) => {
@@ -41,7 +42,7 @@ function registrarse() {
             text: "Debes ingresar todos los datos"
         });
     }else {
-        usuario.push(new Usuario(nombre.value, apellido.value, nickname.value, email.value, pass1.value));
+        usuario.push(new Usuario(nombre.value, apellido.value, email.value, nickname.value, pass1.value));
         localStorage.setItem('usuario', JSON.stringify(usuario));
         Swal.fire({
             icon: 'success',
@@ -53,5 +54,4 @@ function registrarse() {
           })
     }
 }
-
 

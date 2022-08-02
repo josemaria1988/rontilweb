@@ -164,8 +164,8 @@ function actualizar_carrito(arrayCarrito) {
     for (let agregar_producto of arrayCarrito) {
         let li = document.createElement('li')
         li.className = 'carrito-compras'
-        li.innerHTML = `
-                <li class="list-group-item justify-content-between">
+        li.innerHTML = `<ul class="list-group">
+                    <li class="list-group-item justify-content-between">
                     <h6 class="my-0">${agregar_producto.nombre}</h6>
                     <p class="text-muted">${agregar_producto.descripcion}</p>
                     <p class="text-muted" style="background: yellow"> Añadido el ${agregar_producto.hora}</p>
@@ -176,6 +176,7 @@ function actualizar_carrito(arrayCarrito) {
                     </li>
                     <button id="btn_eliminar${agregar_producto.id}" class="btn btn-danger ml-0 eliminarProducto">Eliminar</button>
                     </li>
+                    </ul>
                     `
         carrito_compras.appendChild(li);
     }
@@ -196,6 +197,11 @@ const eliminarProducto = (e) => {
     carrito.splice(index, 1)
     localStorage.setItem('carrito', JSON.stringify(carrito))
     actualizar_carrito(carrito)
+    Swal.fire(
+        'Producto Eliminado!',
+        'Hemos borrado el producto de tu carrito',
+        'success'
+      )
 }
 
 //Usamos API de Clima------------------------------------
@@ -225,3 +231,30 @@ fetch("https://api.openweathermap.org/data/2.5/weather?q=Montevideo&units=metric
     })
 
 
+
+// REALIZAMOS EL LOGIN DE USUARIO.
+
+let btn_ingreso = document.getElementById("ingresoDeUsuario");
+btn_ingreso.addEventListener("click", () => {
+        ingresoDeUsuario();
+})
+
+function ingresoDeUsuario() {
+    let userLogin = document.getElementById("user");
+    let passLogin = document.getElementById("pass");
+    let usuario = JSON.parse(localStorage.getItem('usuario'))
+
+    for(let i=0; i < usuario.length; i++) {
+        if (userLogin == usuario[i].nickname && passLogin == usuario[i].pass1) {
+            console.log("bienvenido nuevamente " + usuario[i].nombre)
+            Swal.fire(
+                'Bienvenido!',
+                'Nos encanta tenerte de nuevo!',
+                'success'
+              )
+        }
+    }Swal.fire(
+        'Usuario incorrecto',
+        'error'
+    )
+}
