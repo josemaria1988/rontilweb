@@ -3,6 +3,8 @@ const contenedor_productos = document.getElementById('contenedor-productos');
 const carrito_compras = document.getElementById('carrito-compras');
 const precio_total = document.getElementById('precio-total');
 const contador_total = document.getElementById('contador-total');
+const input_descuento = document.getElementById('codigo-descuento');
+const btn_confirmar = document.getElementById('confirmar-compra');
 const activar_carrito = document.getElementById('boton-carrito');
 const buscador = document.getElementById('input-buscador');
 const btn_buscador = document.getElementById('btn-buscador');
@@ -181,7 +183,7 @@ function actualizar_carrito(arrayCarrito) {
         carrito_compras.appendChild(li);
     }
     precio_total.innerText = carrito.reduce((acc, info) => acc + info.cantidad * info.precio, 0);
-
+    
     let botonesEliminar = document.querySelectorAll(".eliminarProducto")
 
     botonesEliminar.forEach(boton => {
@@ -258,3 +260,28 @@ function ingresoDeUsuario() {
         'error'
     )
 }
+
+//FUNCION PARA APLICAR CODIGO DE DESCUENTO Y CONFIRMAR COMPRA
+
+function finalizar_compra() {
+
+    let hora = pegaHora();
+    let totalConDescuento = carrito.reduce((acc, info) => acc + info.cantidad * info.precio * 0.80, 0)
+    let totalNormal = carrito.reduce((acc, info) => acc + info.cantidad * info.precio, 0)
+
+    if (input_descuento.value == 494595) {      
+        Swal.fire(
+            'Compra finalizada!',
+            `El total de tu compra es de ${totalConDescuento}`
+            `Compra realizada ${hora}`
+        )
+    }else {
+        Swal.fire(
+            'Compra finalizada!',
+            `El total de tu compra es de ${totalNormal.value}`
+            `Compra realizada ${hora}`
+    )}
+    
+}
+
+btn_confirmar.addEventListener('click', finalizar_compra);
