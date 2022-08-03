@@ -55,3 +55,28 @@ function registrarse() {
     }
 }
 
+// REALIZAMOS EL LOGIN DE USUARIO.
+
+let btn_ingreso = document.getElementById("ingresoDeUsuario");
+btn_ingreso.addEventListener("click", ingresoDeUsuario);
+
+
+function ingresoDeUsuario() {
+    let userLogin = document.getElementById("user");
+    let passLogin = document.getElementById("pass");
+    let usuario = JSON.parse(localStorage.getItem('usuario'))
+
+    for(let i=0; i < usuario.length; i++) {
+        if (userLogin == usuario[i].nickname && passLogin == usuario[i].pass1) {
+            console.log("bienvenido nuevamente " + usuario[i].nombre)
+            Swal.fire(
+                'Bienvenido!',
+                'Nos encanta tenerte de nuevo!',
+                'success'
+              )
+        }
+    }Swal.fire(
+        'Usuario incorrecto',
+        'error'
+    )
+}

@@ -232,56 +232,26 @@ fetch("https://api.openweathermap.org/data/2.5/weather?q=Montevideo&units=metric
         clima.appendChild(div)
     })
 
+    function descuento_usuario() {
+        let totalNormal = descuento_total.value;
+        let totalDescuento = descuento_total.value * 0.85
+        let hora = pegaHora();
 
-
-// REALIZAMOS EL LOGIN DE USUARIO.
-
-let btn_ingreso = document.getElementById("ingresoDeUsuario");
-btn_ingreso.addEventListener("click", () => {
-        ingresoDeUsuario();
-})
-
-function ingresoDeUsuario() {
-    let userLogin = document.getElementById("user");
-    let passLogin = document.getElementById("pass");
-    let usuario = JSON.parse(localStorage.getItem('usuario'))
-
-    for(let i=0; i < usuario.length; i++) {
-        if (userLogin == usuario[i].nickname && passLogin == usuario[i].pass1) {
-            console.log("bienvenido nuevamente " + usuario[i].nombre)
-            Swal.fire(
-                'Bienvenido!',
-                'Nos encanta tenerte de nuevo!',
-                'success'
-              )
+        if (input_descuento === 494595) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Compra con descuento!',
+                text: 'El total de tu compra es de $' + totalDescuento,
+                footer: 'Compra finalizada el ' + hora,
+              })
+        }else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Compra finalizada!',
+                text: 'El total de tu compra es de $' + totalNormal,
+                footer: 'Compra realizada el ' + hora,
+              })
         }
-    }Swal.fire(
-        'Usuario incorrecto',
-        'error'
-    )
-}
+    }
 
-//FUNCION PARA APLICAR CODIGO DE DESCUENTO Y CONFIRMAR COMPRA
-
-function finalizar_compra() {
-
-    let hora = pegaHora();
-    let totalConDescuento = carrito.reduce((acc, info) => acc + info.cantidad * info.precio * 0.80, 0)
-    let totalNormal = carrito.reduce((acc, info) => acc + info.cantidad * info.precio, 0)
-
-    if (input_descuento.value == 494595) {      
-        Swal.fire(
-            'Compra finalizada!',
-            `El total de tu compra es de ${totalConDescuento}`
-            `Compra realizada ${hora}`
-        )
-    }else {
-        Swal.fire(
-            'Compra finalizada!',
-            `El total de tu compra es de ${totalNormal.value}`
-            `Compra realizada ${hora}`
-    )}
-    
-}
-
-btn_confirmar.addEventListener('click', finalizar_compra);
+    btn_confirmar.addEventListener('click', descuento_usuario);
