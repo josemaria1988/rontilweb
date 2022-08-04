@@ -8,6 +8,7 @@ const btn_confirmar = document.getElementById('confirmar-compra');
 const activar_carrito = document.getElementById('boton-carrito');
 const buscador = document.getElementById('input-buscador');
 const btn_buscador = document.getElementById('btn-buscador');
+const modal_carrito = document.getElementById('offcanvas');
 let carrito_json = [];
 let carrito = [];
 let productosBuscados = [];
@@ -100,7 +101,7 @@ function mostrar_productos(productos) {
     productos.forEach(producto => {
         let div = document.createElement('div');
         div.className = 'col'
-        div.innerHTML = `<div class="card h-200">
+        div.innerHTML = `<div class="card shadow-lg p-3 mb-5 bg-white rounded">
         <img class="card-img-top" src=${producto.img} alt = ${producto.id} >
         <div class="card-body">
             <h5 class="card-title">${producto.nombre}</h5>
@@ -233,11 +234,11 @@ fetch("https://api.openweathermap.org/data/2.5/weather?q=Montevideo&units=metric
     })
 
     function descuento_usuario() {
-        let totalNormal = descuento_total.value;
-        let totalDescuento = descuento_total.value * 0.85
+        let totalNormal = carrito.reduce((acc, info) => acc + info.cantidad * info.precio, 0);
+        let totalDescuento = totalNormal * 0.85;
         let hora = pegaHora();
 
-        if (input_descuento === 494595) {
+        if (input_descuento.value == 494595) {
             Swal.fire({
                 icon: 'success',
                 title: 'Compra con descuento!',
@@ -252,6 +253,28 @@ fetch("https://api.openweathermap.org/data/2.5/weather?q=Montevideo&units=metric
                 footer: 'Compra realizada el ' + hora,
               })
         }
+        carrito = [];
+        localStorage.setItem('carrito', JSON.stringify(carrito))
+        carrito_compras.innerHTML = ""
+        
+        let div = document.createElement('div')
+        div.className = 'carrito-compras'
+        div.innerHTML = `<ul class="list-group">
+                    <li class="list-group-item justify-content-between">
+                    <h3 class="my-0">Compra finalizada con éxito</h3>
+                    <p class="text-muted">Tus productos ya están en camino!</p>
+                    <p class="text-muted" style="background: yellow"> Fecha de tu compra ${hora}</p>
+                    <p class="text-muted">Recuerda que el plazo de entrega es de 24 a 48 hrs desde el momento de tu compra </p>
+                    </ul>
+                    <button type="button" class="btn btn-primary mt-3" id="continuar">Continuar comprando</button>
+                    `
+        modal_carrito.appendChild(div);
+
+        let boton_continuar = document.getElementById('continuar');
+        boton_continuar.addEventListener('click', () => {
+            window.location.reload()
+        })
+       
     }
 
     btn_confirmar.addEventListener('click', descuento_usuario);
