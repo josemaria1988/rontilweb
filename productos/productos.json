@@ -109,4 +109,58 @@
         "cantidad": "1",
         "stock": "15",
         "descrip": "Tapa para Contenedor de 120 Litros"
+    },
+    {
+        "id": "12",
+        "nombre": "Papelera Selectiva Triple",
+        "img": "imagenes/papelera-vita-3.jpg",
+        "precio": "5400",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Papelera Selectiva 45 Lts de 3 pedales"
+    },
+    {
+        "id": "13",
+        "nombre": "Papelera Toxi 20 Lts",
+        "img": "imagenes/toxi.jpeg",
+        "precio": "2700",
+        "cantidad": "1",
+        "stock": "10",
+        "descrip": "Papelera para Pilas Toxi 20 Lts"
+    },
+    {
+        "id": "14",
+        "nombre": "Filtro Xiaomi Mi Air Purifier Pro",
+        "img": "imagenes/FJY4013GLH-POSTER.jpg",
+        "precio": "3100",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Filtro Xiaomi para Mi Air Purifier Pro BHR4282GL"
+    },
+    {
+        "id": "15",
+        "nombre": "Pack de Filtros Aeramax Pro",
+        "img": "imagenes/pre-filtro.jpeg",
+        "precio": "1462",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Pack de 4 filtros para Aeramax PRO AM III/IV"
+    },
+    {
+        "id": "16",
+        "nombre": "Purificador de aire Xiaomi Hepa Wifi 3 Modos",
+        "img": "imagenes/Purificador-de-Aire-Xiaomi-Hepa-Wifi-3-Modos-1.jpg",
+        "precio": "7138",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Purificador Xiaomi Hepa Wifi 3 modos"
+    },
+    {
+        "id": "17",
+        "nombre": "Deshumificador Enxuta 10 Lts",
+        "img": "imagenes/deshumificador-enxuta-10-l-1.jpeg",
+        "precio": "8557",
+        "cantidad": "1",
+        "stock": "15",
+        "descrip": "Deshumificador Enxuta Capacidad 10 Lts"
     }]
