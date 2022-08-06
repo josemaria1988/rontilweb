@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="../css/estilos.css" />
     <!--BOOTSTRAP-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -16,19 +16,19 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!--LUXON FECHAS Y HORAS-->
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.0.1/build/global/luxon.min.js"></script>
-    <title>Rontil S.A. Index</title>
+    <title>Rontil S.A. Contacto</title>
 </head>
 
 <body>
     <header class="sticky-top" id="header_frame">
         <nav class="navegacion">
-            <a href="index.html">
-                <img class="logo" src="imagenes/logo.png" alt="logo">
+            <a href="../index.html">
+                <img class="logo" src="../imagenes/logo.png" alt="logo">
             </a>
 
             <!--Menu Navegacion-->
             <ul class="enlaces-menu">
-                <li><a href="index.html">Inicio</a></li>
+                <li><a href="../index.html">Inicio</a></li>
                 <li><a href="#">Nosotros</a></li>
                 <li><a href="#">Productos</a></li>
                 <li><a href="#">Contacto</a></li>
@@ -49,14 +49,12 @@
                 </button>
                 <form class="dropdown-menu p-3">
                     <div class="mb-2">
-                        <label for="exampleDropdownFormUser" class="form-label">Nickname</label>
-                        <input type="text" class="form-control" id="exampleDropdownFormUser" id="user"
-                            placeholder="email@example.com">
+                        <label for="exampleDropdownFormEmail2" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="exampleDropdownFormEmail2" id="user">
                     </div>
                     <div class="mb-2">
                         <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="exampleDropdownFormPassword2" id="pass"
-                            placeholder="Password">
+                        <input type="password" class="form-control" id="exampleDropdownFormPassword2" id="pass">
                     </div>
                     <div class="mb-2">
                         <div class="form-check">
@@ -66,10 +64,10 @@
                             </label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-danger" id="ingresoDeUsuario">Ingresar</button>
+                    <button type="button" class="btn btn-primary" id="ingresoDeUsuario">Ingresar</button>
                     <hr class="my-4">
                     <label class="form-check-label">Eres nuevo?</label>
-                    <a class="btn btn-primary" href="registro.html" role="button">Registrarse</a>
+                    <a class="btn btn-danger" href="../registro.html" role="button">Registrarse</a>
                 </form>
 
 
@@ -77,10 +75,9 @@
 
                 <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvas" aria-controls="offcanvas" id="boton-carrito">Carrito <svg
-                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag"
+                        xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-bag"
                         viewBox="0 0 16 16">
-                        <path
-                            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                        <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
                     </svg></button>
 
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
@@ -106,71 +103,74 @@
 
                         <form class="card p-2">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Código descuento">
-                                <button type="submit" class="btn btn-secondary">Solicitar</button>
+                                <input type="number" class="form-control" id="codigo-descuento"
+                                    placeholder="Código descuento">
                             </div>
-                            <button type="submit" class="btn btn-primary mt-3">Confirmar</button>
+                            <button type="button" class="btn btn-primary mt-3" id="confirmar-compra">Confirmar</button>
                         </form>
                     </div>
                 </div>
-
             </div>
         </nav>
-
     </header>
 
-    <main class="container mt-5 ">
 
-        <!--Formulario De Registro-->
-        <div class="col-md-7 col-lg-8">
-            <h4 class="mb-3">Registro de Usuario</h4>
-            <form class="needs-validation" id="formulario">
-                <div class="row g-3">
-                    <div class="col-sm-6">
-                        <label for="firstName" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre">
-                    </div>
+    <!--SECCION PRINCIPAL-->
 
-                    <div class="col-sm-6">
-                        <label for="lastName" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido">
-                    </div>
 
-                    <div class="col-12">
-                        <label for="username" class="form-label">Usuario</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="username" placeholder="Nombre de usuario">
-                        </div>
-                    </div>
+    <main class="container d-flex">
 
-                    <div class="col-12">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="email@ejemplo.com">
-                    </div>
-                    <div class="col-12">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="pass1" placeholder="Password">
-                    </div>
-                    <div class="col-12">
-                        <label for="password" class="form-label">Confirmar Contraseña</label>
-                        <input type="password" class="form-control " id="pass2" placeholder="Password">
-                    </div>
-
-                    <hr class="my-4">
-
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="same-address">
-                        <label class="form-check-label" for="form-check">Acepto términos y condiciones</label>
-                    </div>
-
-                    <hr class="my-4">
-                    <button class="w-50 btn btn-primary btn-lg" type="submit" id="confirmar">Confirmar</button>
-            </form>
-
+        <div class="mb-3">
+            <img class="img-fluid" id="imagen-contacto1" src="../imagenes/contacto_con_perritos.jpg.jpeg">
+            <img class="img-fluid" id="imagen-contacto2" src="../imagenes/gaspar.jpg">
+            <img class="img-fluid" id="imagen-contacto3" src="../imagenes/baltazar.jpg">
+            <img class="img-fluid" id="imagen-contacto4" src="../imagenes/melchor.jpg">
         </div>
+
+        <form class="form-control mb-3">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Dirección de Email</label>
+              <input type="email" class="form-control form-control-lg" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+            <div class="form-group d-flex">
+              <label for="exampleFormControlSelect1">Elige hablar con uno de nuestros representantes:</label>
+              <select class="form-control form-control-lg" id="exampleFormControlSelect1" onChange="cambiarImagen()">
+                <option id="opcion1"selected>--Elegir--</option>
+                <option id="opcion2"value="gaspar">Gaspar</option>
+                <option id="opcion3"value="baltazar">Baltazar</option>
+                <option id="opcion4"value="melchor">Melchor</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Escribe tu mensaje:</label>
+              <textarea class="form-control form-control-lg" id="exampleFormControlTextarea1" rows="14"></textarea>
+              <button class="btn btn-primary" type="button" id="boton-enviar">Enviar</button>
+            </div>
+          </form>
     </main>
 
-    <!--script de bootstrap-->
+    <footer class="footer container">
+        <div class="d-flex">
+
+            <img src="../imagenes/logosulo.png" alt="logosulo">
+
+
+            <img src="../imagenes/trominklogo.png" alt="trominklogo">
+
+
+            <img src="../imagenes/logojorgensen.png" alt="logojorgensen">
+
+        </div>
+        <div class="container d-flex flex-row-reverse">
+            <img class="logo" src="../imagenes/logo.png" alt="logo">
+            <p>Proyecto Final Javascript CoderHouse Comision 37730 JOSE MARIA SOSA</p>
+        </div>
+    </footer>
+
+
+    <!--Listado de productos-->
+    <script src="../productos/productos.json"></script>
+    <!--BOOTSTRAP-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
@@ -178,11 +178,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!--script de sweetalert-->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!--JAVASCRIPT PROPIO-->
-    <script src="javascript/login.js" type="module"></script>
-    <script src="javascript/main.js" type="module"></script>
-
+    <script src="../javascript/contacto.js"></script>
+    <script src="../javascript/main.js" type="module"></script>
 </body>
 
 </html>

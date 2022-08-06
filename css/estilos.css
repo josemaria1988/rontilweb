@@ -150,8 +150,6 @@ nav{
     margin: 1%;
 }
 
-
-
 /*API DE CLIMA*/
 
 .divClima {
@@ -171,4 +169,15 @@ nav{
     transform: scale(2.5);
     object-fit: contain;
     z-index: 100;
+}
+
+/* PAGINA CONTACTO */
+
+.imagen-contacto {
+    display: block;
+    width: 75%
+}
+
+.imagen-contacto-none {
+    display: none
 }

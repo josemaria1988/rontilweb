@@ -9,7 +9,7 @@ class Usuario{
     }
 };
 
-export let usuario = [];
+let usuario = [];
 
 let formulario = document.getElementById("formulario");
 formulario.addEventListener("submit", (e) => {
@@ -62,9 +62,9 @@ btn_ingreso.addEventListener("click", ingresoDeUsuario);
 
 
 function ingresoDeUsuario() {
-    let userLogin = document.getElementById("user");
-    let passLogin = document.getElementById("pass");
-    let usuario = JSON.parse(localStorage.getItem('usuario'))
+    let userLogin = document.getElementById("user").value;
+    let passLogin = document.getElementById("pass").value;
+    usuario = JSON.parse(localStorage.getItem('usuario'))
 
     for(let i=0; i < usuario.length; i++) {
         if (userLogin == usuario[i].nickname && passLogin == usuario[i].pass1) {

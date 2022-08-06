@@ -278,3 +278,30 @@ fetch("https://api.openweathermap.org/data/2.5/weather?q=Montevideo&units=metric
     }
 
     btn_confirmar.addEventListener('click', descuento_usuario);
+
+    //INGRESO DE USUARIO
+
+let usuario = []
+usuario = JSON.parse(localStorage.getItem('usuario'))
+let userLogin = document.getElementById("user");
+let passLogin = document.getElementById("pass");
+let btn_ingreso = document.getElementById("ingresoDeUsuario");
+    btn_ingreso.addEventListener("click", ingresoDeUsuario);
+
+function ingresoDeUsuario() {
+    
+    for(let i=0; i < usuario.length; i++) {
+        if (userLogin.value == usuario[i].nickname && passLogin.value == usuario[i].pass1) {
+            console.log("bienvenido nuevamente " + usuario[i].nombre)
+            Swal.fire(
+                'Bienvenido!',
+                'Nos encanta tenerte de nuevo! Recuerda el codigo de descuento es 494595',
+                'success'
+              )
+        }else {
+            Swal.fire(
+                'Usuario incorrecto',
+                'error'
+                )}
+    }
+}
